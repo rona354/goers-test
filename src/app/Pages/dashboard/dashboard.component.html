@@ -1,0 +1,209 @@
+<div class="relative bg-gray-100 min-h-screen">
+  <!-- HEADER -->
+  <div class="mx-auto flex flex-row">
+    <!-- SIDE KIRI - MENU MOBILE -->
+    <div class="inline-flex md:hidden justify-start py-4 px-2">
+      <button
+        type="button"
+        class="
+          p-2
+          rounded-md
+          items-center
+          justify-center
+          text-gray-600
+          hover:text-gray-500 hover:bg-gray-100
+          focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500
+        "
+        aria-expanded="false"
+        routerLink=".."
+      >
+        <!-- Heroicon name: outline/menu -->
+        <svg
+          class="h-6 w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+    <!-- SIDE KIRI - MENU WIDE -->
+    <div
+      class="
+        hidden
+        md:flex
+        py-5
+        px-3
+        min-h-screen
+        bg-white
+        flex-col
+        items-center
+        gap-y-6
+        shadow-sm
+        whitespace-no-wrap
+      "
+    >
+      <!-- LOOPING MENU -->
+      <div
+        *ngFor="let item of menuSide"
+        class="
+          bg-white
+          px-5
+          pt-4
+          pb-3
+          text-gray-600 text-sm
+          flex flex-col
+          items-center
+          justify-between
+          rounded-2xl
+          hover:shadow-lg
+          cursor-pointer
+        "
+        [ngClass]="{
+          'bg-blue-ref shadow-lg': item.isActive
+        }"
+      >
+        <img class="" [src]="item.iconUrl" [alt]="item.name" />
+        <span
+          class="align-baseline mt-2"
+          [ngClass]="{ 'text-white': item.isActive }"
+          >{{ item.name }}</span
+        >
+      </div>
+    </div>
+    <!-- SIDE KANAN -->
+    <div class="w-full h-full p-8 text-gray-600 flex flex-col gap-8">
+      <!-- JUDUL -->
+      <h1>
+        Welcome to
+        <span class="text-blue-800 text-3xl font-semibold">{{ title }}</span>
+      </h1>
+      <!-- MAIN STAGE -->
+      <div>
+        <p class="text-gray-800 font-bold text-lg mb-2">Main Stage</p>
+        <!-- card main stage -->
+        <div class="bg-white p-4 rounded-md shadow-sm inline-block w-80">
+          <p class="text-blue-800 text-2xl font-semibold mb-2">
+            {{ mainStage.title }}
+          </p>
+          <p class="text-gray-800 text-sm mb-2">
+            {{ mainStage.time }}
+            <span class="text-gray-500 text-xs">{{ mainStage.zone }}</span>
+          </p>
+          <p class="text-xs text-gray-500">Speaker:</p>
+          <p class="text-xs text-gray-800 font-semibold mb-2">
+            {{ mainStage.speaker }}
+          </p>
+          <div class="flex flex-row justify-between items-center">
+            <span class="text-red-600 text-xs font-bold">Live</span>
+            <button
+              class="
+                bg-teal-100
+                text-teal-600 text-sm
+                font-semibold
+                rounded-md
+                px-4
+                py-2
+              "
+            >
+              Watch
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- BOOTHS STAGE -->
+      <div>
+        <p class="text-gray-800 font-bold text-lg mb-2">Booths</p>
+        <p class="mb-4">Explore the booths from our partners.</p>
+        <div class="flex flex-row gap-6">
+          <div
+            *ngFor="let item of boothStage"
+            class="bg-white rounded-lg shadow-sm inline-block relative w-72"
+          >
+            <!-- pp -->
+            <img
+              class="absolute w-16 h-16 mt-8 ml-4 rounded-xl object-cover"
+              [src]="item.pp"
+              alt="pp"
+            />
+            <!-- heading image -->
+            <img
+              class="w-full h-20 object-cover rounded-t-lg"
+              [src]="item.imgHead"
+              [alt]="item.title"
+            />
+            <div class="flex flex-col gap-4 p-4 mt-2 break-words">
+              <!-- title -->
+              <p class="text-gray-800 font-bold">{{ item.title }}</p>
+              <!-- sub title -->
+              <p>{{ item.subTitle }}</p>
+              <!-- container avatar n button -->
+              <div class="inline-flex flex-row">
+                <!-- avatars -->
+                <div
+                  class="avatar inline-flex text-center"
+                  *ngFor="
+                    let x of item.audiencePict | slice: 0:5;
+                    let i = index
+                  "
+                >
+                  <img
+                    *ngIf="i != 4"
+                    class="w-8 h-8 rounded-full border-2 border-white"
+                    [src]="x"
+                    alt=""
+                  />
+                  <div
+                    *ngIf="i == 4"
+                    class="
+                      w-8
+                      h-8
+                      rounded-full
+                      border border-white
+                      bg-teal-100
+                      text-teal-600 text-xs
+                      font-bold
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    +9
+                  </div>
+                </div>
+                <!-- button enter -->
+                <div>
+                  <button
+                    class="
+                      bg-white
+                      px-3
+                      py-1
+                      text-teal-600
+                      rounded-md
+                      border border-gray-300
+                      text-sm
+                      font-semibold
+                      absolute
+                      right-0
+                      mr-4
+                    "
+                  >
+                    Enter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
